@@ -1,5 +1,5 @@
-import { debounce } from "./utils/utils.js";
-
+import { debounce } from "../utils/utils.js";
+import {checkTheme, setTheme } from "./theme.js"
 
 // -------------------------------------- types -------------------------------------- 
 /**
@@ -18,82 +18,51 @@ import { debounce } from "./utils/utils.js";
  */
 
 // -------------------------------------- configuration -------------------------------------- 
-const getElements = () => {
-    return {
-        //header
+function getElements () {
+    const elements = {
         navToggle: document.querySelector("#nav-toggle-btn"),
-        // navMenu
         navMenu: document.querySelector("#nav-menu"),
         navMenuCloseBtn: document.querySelector("#nav-menu-close-btn"),
-        // theme button parts
         themeBtn: document.querySelector("#theme-btn"),
         themeBtnCover: document.querySelector(".navbar-menu__theme-button-cover"),
         themeBtnIcon: document.querySelector(".navbar-menu__theme-button-icon"),
+    };
+
+    for (const [key, value] of Object.entries(elements)) {
+        if (!value) {
+            console.warn(`Element "${key}" not found in the DOM`);
+        }
     }
+
+    return elements;
 }
 
 /**
  * set up the relevant tags and animationName together
  * @returns {Array<AnimationMap>}
  */
-const getElementsArrayForAnimation = () => {
+function getElementsArrayForAnimation() {
     return [
         {tag: document.querySelector(".intro__title-span"), animationName: "hop"},
-        {tag: document.querySelector(".about__title"), animationName: "tracking-in-contract"},
         {tag: document.querySelector(".about__text"), animationName: "text-focus-in"},
+        {tag: document.querySelector("#online-cv"), animationName: "jello-horizontal"},
+        {tag: document.querySelector("#todobuddy"), animationName: "jello-horizontal"},
+        {tag: document.querySelector("#ebooks-example"), animationName: "jello-horizontal"},
     ]
 }
 
-// -------------------------------------- theme utils -------------------------------------- 
-/**
- * A setTheme function
- * @param {'light'| 'dark'} theme
- */
-function setTheme(theme) {
-    document.documentElement.style.setProperty('--bg-color', theme === 'dark'? '#222831': '#f5f5f5');
-    document.documentElement.style.setProperty('--ac-one', theme === 'dark'? '#ff6000': '#48cfcb');
-    document.documentElement.style.setProperty('--ac-two', theme === 'dark'? '#eb5b00': '#FF0080');
-    document.documentElement.style.setProperty('--fg-color', theme === 'dark'? '#eeeeee': '#424242');
-    localStorage.setItem('theme', theme);
-}
-
-/**
- * set the theme button
- */
-function setThemeOfBtn(theme) {
-    const localTags = getElements();    
-    
-    if (theme === 'dark') {
-        localTags.themeBtnCover.classList.remove('navbar-menu__theme-button-cover--light');
-        localTags.themeBtnIcon.classList.remove('navbar-menu__theme-button-icon--light');
-    }else {
-        localTags.themeBtnCover.classList.add('navbar-menu__theme-button-cover--light');
-        localTags.themeBtnIcon.classList.add('navbar-menu__theme-button-icon--light');
-    }
-}
-
-/**
- * Checks for theme in local storage if not then checks users preferred theme and sets the root property accordingly
- */
-function checkTheme() {
-    let savedTheme = localStorage.getItem('theme');
-    
-    if (!savedTheme) {
-        savedTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches ? 'dark' : 'light';
-    }
-
-    setTheme(savedTheme);
-    setThemeOfBtn(savedTheme);
-}
 
 // -------------------------------------- animation utils -------------------------------------- 
 function isElementInViewport(el) {
+  // Get the bounding rectangle of the element
   const rect = el.getBoundingClientRect();
+  
+  // Check if the element is within the viewport
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.top >= 0 && // Element's top is below the top of the viewport
+    rect.left >= 0 && // Element's left is to the right of the left edge of the viewport
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && // Element's bottom is above the bottom of the viewport
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth) // Element's right is to the left of the right edge of the viewport
   );
 }
 
@@ -102,14 +71,14 @@ function isElementInViewport(el) {
  * @returns {UnbindListenerCallback}
  */
 function scrollEventTracker(tags) {
-    const mapper = () => {
-        tags.forEach((tag) => {
+    function  mapper() {
+        for (const tag of tags) {            
             if (isElementInViewport(tag.tag)) {
                 tag.tag.classList.add(tag.animationName);
             } else {
                 tag.tag.classList.remove(tag.animationName);
             }
-        });
+        }
     }
     // initialize the first animations before scrolling
     mapper();
@@ -148,7 +117,7 @@ function setUpNavMenuEventListeners() {
     
     setUpEventListener('click', localTags.themeBtn, (event) => {
         const currentTheme = localStorage.getItem('theme')  === 'dark'? 'light' : 'dark';
-        setTheme(currentTheme);
+        setTheme(currentTheme, localTags);
         setThemeOfBtn(currentTheme);
     })
 }
@@ -163,10 +132,10 @@ function toggleModel(tag) {
 }
 
 function main() {
-    // set site theme
-    checkTheme();
-
     const tags = getElements();
+    
+    // set site theme
+    checkTheme(tags);
     
     // sets up event handler for navbar toggle button
     setUpEventListener("click", tags.navToggle, () => {

@@ -7,7 +7,7 @@
       name="description"
       content="A Portfolio web page of Christopher Vos"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./public/styles.css" />
     <title>Christopher Portfolio</title>
   </head>
   <body>
@@ -59,7 +59,7 @@
       </nav>
     </header>
 
-    <!-- -------------------------------- intro -------------------------------- -->
+    <!-- -------------------------------- Intro section -------------------------------- -->
     <section class="intro">
       <h1 class="intro__title">
         Hi, <span class="intro__title-span">I am</span>
@@ -91,6 +91,59 @@
       </a>
     </section>
 
-    <script src="./scripts.js" type="module"></script>
+    <!-- -------------------------------- Project section -------------------------------- -->
+    <section class="project">
+      <div class="project__head">
+        <h2 class="project__head-title">Projects</h2>
+        <p class="project__head-text">
+          A collection of projects thats most relevant. theres many more on my
+          <strong>Github</strong> if you want to see more ranging from web to
+          <strong>app development</strong> and a small dose of
+          <strong>lower-level software</strong>
+        </p>
+        <hr class="project__head-hr" />
+      </div>
+
+      <div class="project__body">
+        <a id="online-cv" class="project__body-item" href="">
+          <h3>Online Cv</h3>
+          <p>A basic <strong>svelte</strong> app portfolio</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+            molestias quis ipsa perferendis, facilis laborum nisi. Culpa
+            veritatis vitae, eligendi molestiae blanditiis, ipsa consequatur
+            nobis temporibus voluptatem aliquam eveniet ex?
+          </p>
+        </a>
+
+        <a id="todobuddy" class="project__body-item" href="">
+          <h3>TodoBuddy</h3>
+          <p>A basic <strong>React</strong> note's app</p>
+          <p>
+            This app uses <strong>vite, react, react-router and redux</strong>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+            molestias quis ipsa perferendis, facilis laborum nisi. Culpa
+            veritatis vitae, eligendi molestiae blanditiis, ipsa consequatur
+            nobis temporibus voluptatem aliquam eveniet ex?
+          </p>
+        </a>
+
+        <a id="ebooks-example" class="project__body-item" href="">
+          <h3>ebooks-example</h3>
+          <p>A E-commerce React site</p>
+          <p>
+            This app uses
+            <strong>vite, react, react-router, tailwind and redux</strong> and a
+            expressjs powered api as the backend, Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Cupiditate molestias quis ipsa
+            perferendis, facilis laborum nisi. Culpa veritatis vitae, eligendi
+            molestiae blanditiis, ipsa consequatur nobis temporibus voluptatem
+            aliquam eveniet ex?
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <script src="./js/scripts.js" type="module"></script>
   </body>
 </html>

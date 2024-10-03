@@ -496,6 +496,64 @@ h3 {
   border: 2px solid transparent;
   background: var(--ac-two);
 }
+/* ------------------ project section ------------------ */
+.project {
+  display: flex;
+  flex-direction: column;
+}
+
+.project__head {
+  max-width: 820px;
+  margin: 0 auto 15px;
+}
+.project__head-title {
+  color: var(--ac-one);
+}
+.project__head-hr {
+  display: flex;
+  justify-content: start;
+
+  width: 100%;
+
+  margin: 0.375em 0;
+
+  border: none;
+  border-bottom: 2px solid var(--ac-two);
+}
+.project__head-text {
+}
+
+.project__body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  max-width: 870px;
+  margin: 0 auto;
+}
+
+.project__body-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--ac-one);
+
+  text-decoration: none;
+  color: inherit;
+}
+.project__body-item:nth-last-of-type(odd) {
+  border-color: var(--ac-two);
+}
+.project__body-item h3 {
+  font-size: var(--fs-h3);
+  color: var(--ac-one);
+}
+.project__body-item:nth-last-of-type(odd) h3 {
+  color: var(--ac-two);
+}
+
+.project__body-item p {
+  margin-left: 6px;
+}
 
 /* ------------------ animations section ------------------ */
 .slide-in {
