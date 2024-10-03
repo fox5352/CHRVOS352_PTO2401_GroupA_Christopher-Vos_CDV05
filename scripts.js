@@ -1,5 +1,6 @@
 
-const getSelectors = () => {
+// -------------------------------------- configuration -------------------------------------- 
+const getElements = () => {
     return {
         //header
         navToggle: document.querySelector("#nav-toggle-btn"),
@@ -13,6 +14,20 @@ const getSelectors = () => {
     }
 }
 
+/**
+ * set up the relevant tags and animationName together
+ * @returns {Array<AnimationMap>}
+ */
+const getElementsArrayForAnimation = () => {
+    return [
+        {tag: document.querySelector(".intro__title-span"), animationName: "hop"},
+        {tag: document.querySelector(".intro__image"), animationName: "jello-horizontal"},
+        {tag: document.querySelector(".about__title"), animationName: "tracking-in-contract"},
+        {tag: document.querySelector(".about__text"), animationName: "text-focus-in"},
+    ]
+}
+
+// -------------------------------------- theme utils -------------------------------------- 
 /**
  * A setTheme function
  * @param {'light'| 'dark'} theme
@@ -29,7 +44,7 @@ function setTheme(theme) {
  * set the theme button
  */
 function setThemeOfBtn(theme) {
-    const localTags = getSelectors();    
+    const localTags = getElements();    
     
     if (theme === 'dark') {
         localTags.themeBtnCover.classList.remove('navbar-menu__theme-button-cover--light');
@@ -54,16 +69,59 @@ function checkTheme() {
     setThemeOfBtn(savedTheme);
 }
 
+// -------------------------------------- animation utils -------------------------------------- 
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
 /**
  * @callback EventListenerCallback
  * @param {Event} event - The event object passed to the callback.
  */
+
+/**
+ * @callback UnbindListenerCallback callback function to remove the listener from DOM
+ */
+
+/**
+ * @typedef {Object} AnimationMap
+ * @property {HTMLElement} tag
+ * @property {string} animationName
+ */
+
+/**
+ * @param {Array<AnimationMap>} tags
+ * @returns {UnbindListenerCallback}
+ */
+function scrollEventTracker(tags) {
+    const mapper = () => {
+        tags.forEach((tag) => {
+            if (isElementInViewport(tag.tag)) {
+                tag.tag.classList.add(tag.animationName);
+            } else {
+                tag.tag.classList.remove(tag.animationName);
+            }
+        });
+    }
+    window.addEventListener('scroll', mapper)
+
+    return () => {
+        window.removeEventListener('scroll', mapper)
+    }
+}
+
 /**
  * Sets up a event listener and return a closure to remove said event listener
  * @param {string} eventType the type of event being
  * @param {HTMLElement} tag the tag to bind the event to
  * @param {EventListenerCallback} closure the callback to be executed
- * @returns {Function}
+ * @returns {UnbindListenerCallback}
  */
 function setUpEventListener(eventType, tag, closure) {    
     tag.addEventListener(eventType, closure);
@@ -82,7 +140,7 @@ function toggleModel(tag, state) {
 }
 
 function setUpNavMenuEventListeners() {
-    const localTags = getSelectors();
+    const localTags = getElements();
     
     setUpEventListener('click', localTags.navMenuCloseBtn, (event) => {
         toggleModel(localTags.navMenu)
@@ -99,12 +157,19 @@ function main() {
     // set site theme
     checkTheme();
 
-    const tags = getSelectors();
+    const tags = getElements();
     
+    // sets up event handler for navbar toggle button
     const unSubSelector = setUpEventListener("click", tags.navToggle, (event) => {
         toggleModel(tags.navMenu)
     })
     
+    // sets up event handler for nav menu items
     setUpNavMenuEventListeners();
+
+    // sets up event handler for scroll event
+    const animations = getElementsArrayForAnimation()
+    scrollEventTracker(animations);
+
 }
 main();
