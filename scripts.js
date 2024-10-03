@@ -20,7 +20,7 @@ const getSelectors = () => {
 function setTheme(theme) {
     document.documentElement.style.setProperty('--bg-color', theme === 'dark'? '#222831': '#f5f5f5');
     document.documentElement.style.setProperty('--ac-one', theme === 'dark'? '#ff6000': '#48cfcb');
-    document.documentElement.style.setProperty('--ac-two', theme === 'dark'? '#eb5b00': '#229799');
+    document.documentElement.style.setProperty('--ac-two', theme === 'dark'? '#eb5b00': '#ff69b4');
     document.documentElement.style.setProperty('--fg-color', theme === 'dark'? '#eeeeee': '#424242');
     localStorage.setItem('theme', theme);
 }
@@ -78,20 +78,14 @@ function setUpEventListener(eventType, tag, closure) {
  * @param {boolean} [state]
  */
 function toggleModel(tag, state) {
-    if (state === undefined) {
-        tag.style.display = 'flex';
-        tag.open = !tag.open;
-    }else {
-        tag.style.display = state? 'flex' : 'none';
-        tag.open = state;
-    }
+    tag.classList.toggle('display')
 }
 
 function setUpNavMenuEventListeners() {
     const localTags = getSelectors();
     
     setUpEventListener('click', localTags.navMenuCloseBtn, (event) => {
-        toggleModel(localTags.navMenu, false)
+        toggleModel(localTags.navMenu)
     })
     
     setUpEventListener('click', localTags.themeBtn, (event) => {
@@ -108,7 +102,6 @@ function main() {
     const tags = getSelectors();
     
     const unSubSelector = setUpEventListener("click", tags.navToggle, (event) => {
-        tags.navToggle.classList.toggle("header__navbar-button--active");
         toggleModel(tags.navMenu)
     })
     

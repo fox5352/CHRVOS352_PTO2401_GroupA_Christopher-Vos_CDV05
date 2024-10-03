@@ -15,7 +15,7 @@
   --bg-color: #f5f5f5;
 
   --ac-one: #48cfcb;
-  --ac-two: #229799;
+  --ac-two: #ff69b4;
 
   --fg-color: #424242;
 
@@ -137,14 +137,16 @@ h3 {
   max-width: 768px;
 
   border-radius: 6px;
-  border: 1px solid var(--ac-one);
+  border: 2px solid var(--ac-one);
+  background: linear-gradient(145deg, transparent 65%, var(--ac-one) 65%);
 }
 .header_title {
   font-size: calc(var(--fs-h3) + 12px);
 }
 
-/* .header__navbar {
-} */
+.header__navbar {
+  position: relative;
+}
 
 /* -------- hamburger button -------- */
 .header__navbar-button {
@@ -161,6 +163,7 @@ h3 {
   border: none;
   border: 2px solid transparent;
   background-color: transparent;
+  transition: all 250ms ease-in-out;
 
   overflow: hidden;
 }
@@ -171,7 +174,7 @@ h3 {
   height: 3px;
 
   border-radius: 16px;
-  background: var(--ac-one);
+  background: var(--bg-color);
 
   position: relative;
 
@@ -188,7 +191,7 @@ h3 {
   height: 3px;
 
   border-radius: 1em;
-  background: var(--ac-one);
+  background: var(--bg-color);
 
   transition: all 250ms ease-in-out;
 }
@@ -200,7 +203,7 @@ h3 {
 }
 
 .header__navbar-button:hover {
-  border-color: var(--ac-one);
+  border-color: var(--bg-color);
   border-radius: 0.31em;
   transition: border-color 250ms ease-in-out;
 }
@@ -209,26 +212,17 @@ h3 {
   border-radius: 0.31em;
 }
 
-/* -------- hamburger button active -------- */
-.header__navbar-button--active .hamburger {
-  background: transparent !important;
-}
-.header__navbar-button--active .hamburger::before {
-  top: 0px;
-  transform: rotate(45deg);
-}
-.header__navbar-button--active .hamburger::after {
-  top: 0px;
-  transform: rotate(-45deg);
+.header__navbar-button:active {
+  transform: scale(0.8);
+  transition: all 150ms ease-in-out;
 }
 
 /* ------------------ nav menu section ------------------ */
 .header__navbar-menu {
   position: absolute;
-  top: 20%;
-  left: 50%;
+  top: 150%;
+  right: 0%;
   z-index: 50;
-  transform: translate(-50%, -50%);
 
   display: none;
   flex-direction: column;
@@ -245,6 +239,9 @@ h3 {
   border-radius: 8px;
   border: 2px solid var(--ac-one);
   background: var(--bg-color);
+}
+.display {
+  display: flex;
 }
 
 .header__navbar-menu-head {
