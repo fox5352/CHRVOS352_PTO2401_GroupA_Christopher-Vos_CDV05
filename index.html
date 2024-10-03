@@ -11,17 +11,66 @@
     <title>Christopher Portfolio</title>
   </head>
   <body>
-    <!-- TODO: create a fun animated header section -->
+    <!-- ------------------------------------ header section ------------------------------------ -->
+    <header class="header">
+      <h3 class="header_title">Dev Portfolio</h3>
+
+      <!-- ------------------------------------ nav controls ------------------------------------ -->
+      <nav class="header__navbar">
+        <button
+          class="header__navbar-button"
+          id="nav-toggle-btn"
+          aria-label="toggle navigation"
+        >
+          <span class="hamburger"></span>
+        </button>
+      </nav>
+
+      <!-- ------------------------------------ nav menu ------------------------------------ -->
+      <dialog id="nav-menu" class="header__navbar-menu">
+        <div class="header__navbar-menu-head">
+          <h3 class="header__navbar-menu-title">Nav bar</h3>
+          <button
+            id="nav-menu-close-btn"
+            class="header__navbar-menu-close-button"
+          >
+            X
+          </button>
+        </div>
+        <ul class="header__navbar-menu-list">
+          <a class="header__navbar-menu-link" href="#contact">
+            <li class="header__navbar-menu-item">Contact</li>
+          </a>
+
+          <a class="header__navbar-menu-link" href="#about">
+            <li class="header__navbar-menu-item">About</li>
+          </a>
+
+          <a class="header__navbar-menu-link" href="#projects">
+            <li class="header__navbar-menu-item">Projects</li>
+          </a>
+        </ul>
+        <div class="header__navbar-menu-group">
+          <button id="theme-btn" class="navbar-menu__theme-button theme-btn">
+            <span class="navbar-menu__theme-button-cover">
+              <span class="navbar-menu__theme-button-icon"></span>
+            </span>
+          </button>
+        </div>
+      </dialog>
+    </header>
 
     <!-- -------------------------------- intro -------------------------------- -->
     <section class="intro">
-      <h1 class="intro--title">Hi, I am <strong>Christopher</strong></h1>
-      <p class="intro--subtitle">front-end dev</p>
+      <h1 class="intro__title">Hi, I am <strong>Christopher</strong></h1>
+      <p class="intro__subtitle">front-end dev</p>
       <img
         src="./public/dev-chris-01.jpg"
         alt="a picture of Jane Smith smiling"
-        class="intro--image"
+        class="intro__image"
       />
     </section>
+
+    <script src="./scripts.js"></script>
   </body>
 </html>
