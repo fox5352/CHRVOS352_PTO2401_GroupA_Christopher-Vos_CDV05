@@ -1,5 +1,5 @@
 import { debounce } from "../utils/utils.js";
-import {checkTheme, setTheme } from "./theme.js"
+import {checkTheme, setTheme, setThemeOfBtn } from "./theme.js"
 
 // -------------------------------------- types -------------------------------------- 
 /**
@@ -118,7 +118,7 @@ function setUpNavMenuEventListeners() {
     setUpEventListener('click', localTags.themeBtn, (event) => {
         const currentTheme = localStorage.getItem('theme')  === 'dark'? 'light' : 'dark';
         setTheme(currentTheme, localTags);
-        setThemeOfBtn(currentTheme);
+        setThemeOfBtn(currentTheme, localTags);
     })
 }
 

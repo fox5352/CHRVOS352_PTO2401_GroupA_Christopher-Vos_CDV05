@@ -17,7 +17,7 @@ export function setTheme(theme) {
  * @param {'light'| 'dark'} theme
  * @param {Object} tags
  */
-function setThemeOfBtn(theme, tags) {    
+export function setThemeOfBtn(theme, tags) {
     if (theme === 'dark') {
         tags.themeBtnCover.classList.remove('navbar-menu__theme-button-cover--light');
         tags.themeBtnIcon.classList.remove('navbar-menu__theme-button-icon--light');
