@@ -1,4 +1,4 @@
-import { debounce, throttle } from "./utils/utils.js";
+import { debounce } from "./utils/utils.js";
 
 
 // -------------------------------------- types -------------------------------------- 
@@ -52,7 +52,7 @@ const getElementsArrayForAnimation = () => {
 function setTheme(theme) {
     document.documentElement.style.setProperty('--bg-color', theme === 'dark'? '#222831': '#f5f5f5');
     document.documentElement.style.setProperty('--ac-one', theme === 'dark'? '#ff6000': '#48cfcb');
-    document.documentElement.style.setProperty('--ac-two', theme === 'dark'? '#eb5b00': '#ff69b4');
+    document.documentElement.style.setProperty('--ac-two', theme === 'dark'? '#eb5b00': '#FF0080');
     document.documentElement.style.setProperty('--fg-color', theme === 'dark'? '#eeeeee': '#424242');
     localStorage.setItem('theme', theme);
 }
@@ -111,6 +111,8 @@ function scrollEventTracker(tags) {
             }
         });
     }
+    // initialize the first animations before scrolling
+    mapper();
 
     const debounceMapper = debounce(mapper, 100)
 

@@ -15,7 +15,7 @@
   --bg-color: #f5f5f5;
 
   --ac-one: #48cfcb;
-  --ac-two: #ff69b4;
+  --ac-two: #ff0080;
 
   --fg-color: #424242;
 
@@ -445,6 +445,10 @@ h3 {
 .about {
   display: flex;
   flex-direction: column;
+
+  max-width: 820px;
+
+  margin: 0 auto;
 }
 .about__title {
   color: var(--ac-one);
@@ -464,6 +468,33 @@ h3 {
 }
 .about__text {
   opacity: 0;
+}
+.about__link {
+  display: flex;
+  flex-grow: 1;
+
+  min-width: 180px;
+  max-width: 220px;
+  width: 50%;
+  height: 36px;
+
+  text-decoration: none;
+}
+.about__link-button {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--bg-color);
+
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background: var(--ac-two);
 }
 
 /* ------------------ animations section ------------------ */
