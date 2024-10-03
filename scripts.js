@@ -1,3 +1,21 @@
+import { debounce, throttle } from "./utils/utils.js";
+
+
+// -------------------------------------- types -------------------------------------- 
+/**
+ * @callback EventListenerCallback
+ * @param {Event} event - The event object passed to the callback.
+ */
+
+/**
+ * @callback UnbindListenerCallback callback function to remove the listener from DOM
+ */
+
+/**
+ * @typedef {Object} AnimationMap
+ * @property {HTMLElement} tag
+ * @property {string} animationName
+ */
 
 // -------------------------------------- configuration -------------------------------------- 
 const getElements = () => {
@@ -21,7 +39,6 @@ const getElements = () => {
 const getElementsArrayForAnimation = () => {
     return [
         {tag: document.querySelector(".intro__title-span"), animationName: "hop"},
-        {tag: document.querySelector(".intro__image"), animationName: "jello-horizontal"},
         {tag: document.querySelector(".about__title"), animationName: "tracking-in-contract"},
         {tag: document.querySelector(".about__text"), animationName: "text-focus-in"},
     ]
@@ -81,21 +98,6 @@ function isElementInViewport(el) {
 }
 
 /**
- * @callback EventListenerCallback
- * @param {Event} event - The event object passed to the callback.
- */
-
-/**
- * @callback UnbindListenerCallback callback function to remove the listener from DOM
- */
-
-/**
- * @typedef {Object} AnimationMap
- * @property {HTMLElement} tag
- * @property {string} animationName
- */
-
-/**
  * @param {Array<AnimationMap>} tags
  * @returns {UnbindListenerCallback}
  */
@@ -109,13 +111,18 @@ function scrollEventTracker(tags) {
             }
         });
     }
-    window.addEventListener('scroll', mapper)
+
+    const debounceMapper = debounce(mapper, 100)
+
+    window.addEventListener('scroll', debounceMapper)
 
     return () => {
-        window.removeEventListener('scroll', mapper)
+        window.removeEventListener('scroll', debounceMapper)
     }
 }
 
+
+// -------------------------------------- eventListeners utils -------------------------------------- 
 /**
  * Sets up a event listener and return a closure to remove said event listener
  * @param {string} eventType the type of event being
@@ -128,15 +135,6 @@ function setUpEventListener(eventType, tag, closure) {
     return () => {
         tag.removeEventListener(eventType, closure);
     }
-}
-
-/**
- * 
- * @param {HTMLDialogElement} tag 
- * @param {boolean} [state]
- */
-function toggleModel(tag, state) {
-    tag.classList.toggle('display')
 }
 
 function setUpNavMenuEventListeners() {
@@ -153,6 +151,15 @@ function setUpNavMenuEventListeners() {
     })
 }
 
+
+/**
+ * 
+ * @param {HTMLDialogElement} tag 
+ */
+function toggleModel(tag) {
+    tag.classList.toggle('display')
+}
+
 function main() {
     // set site theme
     checkTheme();
@@ -160,7 +167,7 @@ function main() {
     const tags = getElements();
     
     // sets up event handler for navbar toggle button
-    const unSubSelector = setUpEventListener("click", tags.navToggle, (event) => {
+    setUpEventListener("click", tags.navToggle, () => {
         toggleModel(tags.navMenu)
     })
     
