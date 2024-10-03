@@ -382,6 +382,9 @@ h3 {
   margin-bottom: 0.25em;
   font-weight: var(--fw-reg);
 }
+.intro__title-span {
+  color: var(--ac-two);
+}
 
 .intro__title strong {
   display: block;
@@ -399,6 +402,7 @@ h3 {
   border-radius: 0.125em;
   background: var(--ac-one);
   box-shadow: var(--bx-s);
+  overflow: hidden;
 }
 
 .intro__image {
@@ -435,5 +439,63 @@ h3 {
   .intro__image {
     grid-area: img;
     min-width: 250px;
+  }
+}
+
+/* ------------------ animations section ------------------ */
+.slide-in {
+  position: relative;
+  left: -300%;
+  animation: slide 1s 0.3s forwards ease-in-out;
+}
+
+@keyframes slide {
+  from {
+    left: -300%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.hop {
+  display: inline-flex;
+  color: var(--ac-two);
+  position: relative;
+  animation: hop 1s 0.3s linear forwards;
+}
+
+@keyframes hop {
+  0% {
+    color: var(--ac-two);
+    transform: rotate(-15deg);
+  }
+  12.5% {
+    color: var(--ac-two);
+    transform: translate(12px, -12px) rotate(0deg);
+  }
+  25% {
+    color: var(--ac-two);
+    transform: translate(24px, 0px) rotate(15deg);
+  }
+  37.5% {
+    color: var(--ac-two);
+    transform: translate(24px, 0px) rotate(0deg);
+  }
+  50% {
+    color: var(--ac-one);
+    transform: translate(24px, 0px) rotate(-15deg);
+  }
+  62.5% {
+    color: var(--ac-one);
+    transform: translate(36px, -12px) rotate(0deg);
+  }
+  75% {
+    color: var(--ac-one);
+    transform: translate(48px, 0px) rotate(15deg);
+  }
+  100% {
+    color: var(--ac-one);
+    transform: translate(48px, 0px) rotate(0deg);
   }
 }
