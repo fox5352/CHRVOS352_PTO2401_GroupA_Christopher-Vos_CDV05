@@ -48,6 +48,7 @@ function getElementsArrayForAnimation() {
         {tag: document.querySelector("#online-cv"), animationName: "jello-horizontal"},
         {tag: document.querySelector("#todobuddy"), animationName: "jello-horizontal"},
         {tag: document.querySelector("#ebooks-example"), animationName: "jello-horizontal"},
+        {tag: document.querySelector('.footer') , animationName: "text-focus-in"},
     ]
 }
 
