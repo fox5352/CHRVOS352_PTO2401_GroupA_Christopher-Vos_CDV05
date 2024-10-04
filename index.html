@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A Portfolio web page of Christopher Vos"
+      content="Christopher Vos - Front-end Developer Portfolio. Explore my projects in React, JavaScript, and more. Specializing in responsive web design and UX principles."
     />
+    <meta name="author" content="Christopher Vos" />
+    <meta
+      name="keywords"
+      content="front-end developer, web development, React, JavaScript, UX design, portfolio"
+    />
+
     <link rel="stylesheet" href="./public/styles.css" />
-    <title>Christopher Portfolio</title>
+    <title>Christopher Vos - Front-end Developer Portfolio</title>
   </head>
   <body>
     <!-- ------------------------------------ header section ------------------------------------ -->
@@ -16,16 +22,17 @@
       <h3 class="header_title">Dev Portfolio</h3>
 
       <!-- ------------------------------------ nav controls ------------------------------------ -->
-      <nav class="header__navbar">
+      <nav class="header__navbar" aria-label="Main Navigation">
         <button
           class="header__navbar-button"
           id="nav-toggle-btn"
-          aria-label="toggle navigation"
+          aria-label="toggle navigation menu"
+          aria-expanded="false"
         >
           <span class="hamburger"></span>
         </button>
         <!-- ------------------------------------ nav menu ------------------------------------ -->
-        <div id="nav-menu" class="header__navbar-menu">
+        <div id="nav-menu" class="header__navbar-menu" aria-hidden="true">
           <div class="header__navbar-menu-head">
             <h3 class="header__navbar-menu-title">Nav bar</h3>
             <button
@@ -49,7 +56,11 @@
             </a>
           </ul>
           <div class="header__navbar-menu-group">
-            <button id="theme-btn" class="navbar-menu__theme-button theme-btn">
+            <button
+              id="theme-btn"
+              class="navbar-menu__theme-button theme-btn"
+              aria-label="Toggle dark/light theme"
+            >
               <span class="navbar-menu__theme-button-cover">
                 <span class="navbar-menu__theme-button-icon"></span>
               </span>
@@ -79,13 +90,44 @@
     <section id="about" class="about">
       <h2 class="about__title">About Me</h2>
       <hr class="about__hr" />
-      <p class="about__text">
-        I am an aspiring <strong>front-end developer</strong> with a proficiency
-        in with technologies such as JavaScript, TypeScript, jQuery, React.js
-        Node, Express, mongoDB, Postgres and That's complemented by a solid
-        foundation in <strong>UX design</strong> principles. And I'm eager to
-        contribute in creating dynamic and responsive websites
-      </p>
+      <!-- <p class="about__text">
+        I am an aspiring <strong>front-end developer</strong> with a passion for
+        creating dynamic and responsive websites. With
+        <strong>two years of programming experience</strong>, I've developed
+        proficiency in a range of technologies including
+        <strong
+          >JavaScript, TypeScript, Python, React.js, jQuery, Node.js, Express,
+          MongoDB, and PostgreSQL</strong
+        >. My expertise extends to building user-friendly web interfaces, backed
+        by a solid foundation in <strong>UX design principles</strong>. I
+        approach full-stack development with enthusiasm, constantly staying
+        up-to-date with the latest trends in the developer world. What began as
+        a hobby has evolved into a deep-seated passion, driving me to
+        continuously expand my skills and knowledge. I'm eager to contribute my
+        abilities to innovative web solutions and grow as a professional in the
+        field of <strong>web development</strong>.
+      </p> -->
+      <div class="about__text">
+        <p>
+          I am an aspiring <strong>front-end developer</strong> with a passion
+          for creating dynamic and responsive websites. With
+          <strong>two years of programming experience</strong>, I've developed
+          proficiency in a range of technologies including
+          <strong
+            >JavaScript, TypeScript, Python, React.js, jQuery, Node.js, Express,
+            MongoDB, and PostgreSQL</strong
+          >. My expertise extends to building user-friendly web interfaces,
+          backed by a solid foundation in <strong>UX design principles</strong>.
+        </p>
+        <p>
+          I approach development with enthusiasm, constantly staying up-to-date
+          with the latest trends in the developer world. What began as a hobby
+          has evolved into a deep-seated passion, driving me to continuously
+          expand my skills and knowledge. I'm eager to contribute my abilities
+          to innovative web solutions and grow as a professional in the field of
+          <strong>web development</strong>.
+        </p>
+      </div>
       <a class="about__link" target="_blank" href="https://github.com/fox5352/">
         <button class="about__link-button">My Github</button>
       </a>
@@ -110,6 +152,7 @@
           class="project__body-item"
           href="https://github.com/fox5352/online-cv"
           target="_blank"
+          aria-label="Online CV project - View on GitHub"
         >
           <h3>Online Cv</h3>
           <p>A basic <strong>svelte</strong> app portfolio</p>
@@ -126,6 +169,7 @@
           class="project__body-item"
           href="https://github.com/fox5352/todobuddy"
           target="_blank"
+          aria-label="TodoBuddy project - View on Github"
         >
           <h3>TodoBuddy</h3>
           <p>A basic <strong>React</strong> note's app</p>
@@ -143,6 +187,7 @@
           class="project__body-item"
           href="https://github.com/fox5352/eBooks-example"
           target="_blank"
+          aria-label="Ebooks-example project - View on Github"
         >
           <h3>ebooks-example</h3>
           <p>A E-commerce React site</p>
@@ -159,17 +204,17 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
       <div class="footer__body">
         <!--  -->
         <ul class="footer__body-menu">
           <li>
-            <a href="https://codepen.io/fox5352/"> CodePen </a>
-          </li>
-          <li>
             <a href="https://www.linkedin.com/in/christopher-vos-4a414a21/">
               LinkedIn
             </a>
+          </li>
+          <li>
+            <a href="https://codepen.io/fox5352/"> CodePen </a>
           </li>
           <li>
             <a href="https://github.com/fox5352/"> Github </a>
