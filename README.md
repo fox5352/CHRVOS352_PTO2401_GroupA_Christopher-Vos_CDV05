@@ -1,5 +1,10 @@
 ### CDV05 | Project Brief: Simple Developer Portfolio Website 🎨
 
+## running app
+
+- To view use the page you can use **live sever** in vscode or open the **index.html** file with the **browser**
+- [Theres also a live demo of the page](https://fox5352.github.io/CHRVOS352_PTO2401_GroupA_Christopher-Vos_CDV05/)
+
 #### Objective
 
 Create a very simple developer portfolio website to showcase your projects, skills, and contact information. This project will help you demonstrate your ability to design and develop a personal website that combines design and user experience, project showcase, content quality, and technical proficiency.
